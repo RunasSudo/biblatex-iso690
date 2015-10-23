@@ -221,7 +221,8 @@
   \printtext{#1}\setunit*{\addcolon\addspace}%\printtext[rbrackets]{#2}%
 }%
 \newbibmacro{print-online}{%
-  \printtext[rbrackets]{%
+  %\printtext[rbrackets]{%
+  \printtext{%
     \usebibmacro{online-test}{}{%
       \iffieldundef{url}{%
         \printfield{doi}%
