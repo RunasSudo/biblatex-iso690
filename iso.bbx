@@ -275,7 +275,7 @@
   {\printfield{date}}%
   \usebibmacro{urldate}
 }%
-\newbibmacro*{urldate}{%
+\renewbibmacro*{urldate}{%
   \iffieldundef{updated}{}%
   {\addspace\printfield{updated}}%
   \iffieldundef{urlyear}{}%
