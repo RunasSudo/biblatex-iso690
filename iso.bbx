@@ -191,7 +191,11 @@
 \newbibmacro*{names:primary}{%
   \ifnameundef{author}%
   {\usebibmacro{editor}}%
-  {\printnames{author}\iffieldundef{fullname}{}{\addspace\printfield{fullname}}}%
+  {%
+    \printnames{author}%
+    \iffieldundef{fullname}{}{\addspace\printfield{fullname}}%
+    \iffieldundef{authortype}{}{\addcomma\addspace\printfield{authortype}}%
+  }%
   \setunit{\addcomma\space}%
   \usebibmacro{year-label}%
 }%
