@@ -132,10 +132,16 @@
 \DeclareFieldFormat*{url}{\url{#1}}
 \DeclareFieldFormat*{doi}{\url{http://dx.doi.org/#1}}
 
+% ==================== RUNASSUDO ADDITIONS ====================
 \NewBibliographyString{urlupdated}
 \DeclareDatamodelFields[type=field,datatype=verbatim]{updated}
 \DeclareDatamodelEntryfields{updated}
 \DeclareFieldFormat*{updated}{\mainsstring{urlupdated}\addspace#1}
+
+\DeclareDatamodelFields[type=field,datatype=verbatim]{fullname}
+\DeclareDatamodelEntryfields{fullname}
+\DeclareFieldFormat*{fullname}{[\MakeUppercase{#1}]}
+% ======================= END ADDITIONS =======================
 
 \DeclareFieldFormat{sbrackets}{[#1]}
 %\DeclareFieldFormat{rbrackets}{\printtext{$\langle$}#1\printtext{$\rangle$}}
@@ -185,7 +191,7 @@
 \newbibmacro*{names:primary}{%
   \ifnameundef{author}%
   {\usebibmacro{editor}}%
-  {\printnames{author}}%
+  {\printnames{author}\iffieldundef{fullname}{}{\addspace\printfield{fullname}}}%
   \setunit{\addcomma\space}%
   \usebibmacro{year-label}%
 }%
