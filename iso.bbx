@@ -143,6 +143,9 @@
 \DeclareFieldFormat*{fullname}{[\MakeUppercase{#1}]}
 
 \DeclareDatamodelFields[type=field,datatype=verbatim]{isbn} %ISBN (but not ISSN) is treated as a number for some reason
+
+\DeclareDatamodelFields[type=field,datatype=verbatim]{urltype}
+\DeclareDatamodelEntryfields{urltype}
 % ======================= END ADDITIONS =======================
 
 \DeclareFieldFormat{sbrackets}{[#1]}
@@ -229,7 +232,9 @@
 }%
 \newbibmacro*{online}{%
   %\def\online{}%
-  \iffieldundef{urlyear}{}{\printtext[sbrackets]{online}}%
+  \iffieldundef{urlyear}{}{%
+    \iffieldundef{urltype}{\printtext[sbrackets]{online}}{\printfield[sbrackets]{urltype}}%
+  }%
   %\usebibmacro{online-test}{}{\online}%
 }%
 
