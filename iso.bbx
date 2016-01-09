@@ -157,11 +157,11 @@
 %We must handle more than one isbn and issn
 \DeclareFieldFormat{isbn}{%
 %\renewcommand*{\do}[1]{\printtext{ISBN}\addnbspace#1\adddot\addspace}%
-\printtext{ISBN}\addnbspace#1}%
+\printtext{ISBN}\addspace#1}%
 %\printtext{ISBN}\addnbspace#1}
 
 \DeclareFieldFormat{issn}{%
-\renewcommand*{\do}[1]{\printtext{ISSN}\addnbspace#1\adddot\addspace}%
+\renewcommand*{\do}[1]{\printtext{ISSN}\addspace#1\adddot\addspace}%
 \docsvfield{issn}}%
 
 \def\addhyphen{\printtext{-}}%
