@@ -1,7 +1,7 @@
 \ProvidesFile{iso-numeric.bbx}[2011/06/08]
 
 \newbibmacro*{year-label}{}%
-\DeclareFieldFormat{labelnumberwidth}{#1\adddot}
+\DeclareFieldFormat{labelnumberwidth}{[#1]}
 
 \newcommand\MethodFormat{%
       \printtext[labelnumberwidth]{%
@@ -13,3 +13,13 @@
       ,labelnumber
     }
 \RequireBibliographyStyle{iso}
+
+\usepackage{changepage}
+\def\iso@bibitem #1\endgroup{
+	\begin{adjustwidth}{1cm}{0cm}
+		\makebox[0pt][l]{\hspace*{-1cm}\MethodFormat}%
+		#1
+	\end{adjustwidth}\endgroup\par
+}
+
+\defbibenvironment{bibliography}{}{}{\iso@bibitem}
