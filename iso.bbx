@@ -141,6 +141,8 @@
 \DeclareDatamodelFields[type=field,datatype=verbatim]{fullname}
 \DeclareDatamodelEntryfields{fullname}
 \DeclareFieldFormat*{fullname}{[\MakeUppercase{#1}]}
+
+\DeclareDatamodelFields[type=field,datatype=verbatim]{isbn} %ISBN (but not ISSN) is treated as a number for some reason
 % ======================= END ADDITIONS =======================
 
 \DeclareFieldFormat{sbrackets}{[#1]}
