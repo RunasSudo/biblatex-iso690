@@ -82,7 +82,7 @@
 \renewcommand\multinamedelim{\addcomma\addspace}
 \renewcommand\finalnamedelim{\printtext{ and }}
 \renewcommand\andothersdelim{\addspace}
-\renewcommand\intitlepunct{\addspace}
+\renewcommand\intitlepunct{\addcolon\addspace}
 
 % Thanks Moewew for sugesting this. Make uppercase names only in biblipgraphy.
 % Default name format is ALL-CAPS
@@ -495,29 +495,28 @@
 %\printnames{author}%
 \usebibmacro{bibindex}%
 \usebibmacro{begentry}%
-\printnames{bookauthor}%
-\usebibmacro{year-label}%
-\newunit\newblock%
-% \printfield{booktitle}%
-% \printfield[emph-colon]{booksubtitle}%
-\usebibmacro{pub:title}
-\newunit\newblock%
-\usebibmacro{book:vol}
-\newunit\newblock%
-\printnames{author}%
-\newunit\newblock%
-\usebibmacro{book:pubinfo}%
-\newunit\newblock%
-\printfield{chapter}%
-\setunit*{\addcomma\addspace}%
-\newunit%
-\printfield{title}%
+\usebibmacro{names:primary}%
+\setunit{\labelnamepunct}\newblock%
+\printfield{title}%%
 \setunit{\addspcolon\addspace}
 \printfield{subtitle}%
 \setunit{\addspace}
 \printfield{addon}
-\setunit{\addcomma\addspace}%
-\printfield{pages}%
+\newunit\newblock%
+\usebibmacro{in}%
+\setunit{\intitlepunct}
+\printnames[first-last]{bookauthor}%
+\printtext{, ed.}
+\newunit\newblock%
+\usebibmacro{pub:title}%
+\newunit\newblock%
+\usebibmacro{book:vol}%
+\newunit\newblock%
+\usebibmacro{book:pubinfo}%
+\newunit\newblock%
+\usebibmacro{pagecount}%
+\newunit\newblock%
+\printfield{series}%
 \newunit\newblock%
 \printfield{note}%
 \newunit\newblock%
@@ -525,7 +524,7 @@
 \newunit\newblock%
 \printfield{isbn}%
 \newunit\newblock%
-\setunit{\bibpagerefpunct}\newblock%                  
+\setunit{\bibpagerefpunct}\newblock%
 \usebibmacro{pageref}%
 \usebibmacro{finentry}}%
 
