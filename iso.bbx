@@ -184,11 +184,13 @@
   %    {\setunit*{\addcomma\addspace}}
   %    {\setunit*{}}%
   %}
-  \iflistundef{location}{\setunit{\adddot\addspace}}{%
+  \iflistundef{location}{%
+    \setunit{\adddot\addspace}%
+    \printlist{publisher}%
+  }{%
     % \iflistundef{publisher}{}{\printtext[colon]{\printlist{publisher}}}%
     \iflistundef{publisher}{}{\setunit{\addspcolon\addspace}\printlist{publisher}}%
   }%
-  \printlist{publisher}%
   \usebibmacro{date-urldate}%
 }%
 
