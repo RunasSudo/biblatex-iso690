@@ -1,18 +1,22 @@
-\ProvidesFile{iso-numeric.bbx}[2011/06/08]
+\ProvidesFile{iso-numeric.bbx}[2016/05/13 v0.3.1 biblatex bibliography style]
 
-\newbibmacro*{year-label}{}%
+\RequireBibliographyStyle{iso}
+\ExecuteBibliographyOptions{%
+  sorting=none,
+  labelnumber
+}
+
 \DeclareFieldFormat{labelnumberwidth}{[#1]}
 
-\newcommand\MethodFormat{%
-      \printtext[labelnumberwidth]{%
-    	\printfield{prefixnumber}%
-    	\printfield{labelnumber}}%
-    }%
-    \ExecuteBibliographyOptions{%
-       sorting=none
-      ,labelnumber
-    }
-\RequireBibliographyStyle{iso}
+\@ifpackagelater{biblatex}{2016/03/27}
+  {\newcommand\MethodFormat{%
+     \printtext[labelnumberwidth]{%
+        \printfield{labelprefix}%
+        \printfield{labelnumber}}}}%
+  {\newcommand\MethodFormat{%
+     \printtext[labelnumberwidth]{%
+        \printfield{prefixnumber}%
+        \printfield{labelnumber}}}}%
 
 \usepackage{changepage}
 \def\iso@bibitem #1\endgroup{
@@ -23,3 +27,5 @@
 }
 
 \defbibenvironment{bibliography}{}{}{\iso@bibitem}
+
+\endinput

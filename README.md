@@ -1,18 +1,32 @@
 Style ISO 690 for biblatex
 ==========================
-Biblatex is bibliography and citation tool for LaTeX.
+
+Biblatex is bibliography and citation tool for LaTeX. This project provides
+support for citations in ISO 690 style.  As the norm is a little bit ambiguous
+in some details regarding formatting of records, we largely follow
+requirements of Czech interpretation, as it is required form in many Czech
+universities. Style can be used in other languages as well, of course.
 
 Install
 -------
-Unzip contents of the file biblatex-iso690.zip to your local texmf dir. You can find its location with the following command:
+
+Open the terminal and find location of your TEXMFHOME directory with this command.
 
     kpsewhich -var-value TEXMFHOME
+    
+Open this directory using and check that directory $TEXMFHOME/tex/latex exists.
+If it doesn't exist, you must create it. You can do this from the
+command line or using a file manager.  Open the $TEXMFHOME/tex/latex directory and either
+run command 
 
-If this directory doesn't exist, you can create it. Also, do not forget about latex directory structure. That means you need to create (if doesn't exist yet), for example, `~/texmf/tex/latex/biblatex-iso690` if you use LaTeX. In case you are using XeTeX or LuaTeX you will need to replace `/tex/latex` by an appropriate path. Afterwards run:
+    git clone git@github.com:michal-h21/biblatex-iso690.git
 
-    texhash 
+or unzip file
 
-This command rebuilds TeX files database. Now your system should be able to work with biblatex-iso690.
+    https://github.com/michal-h21/biblatex-iso690/archive/master.zip
+
+here. You should be able to use biblatex-iso690 now.
+
 
 
 Usage:
@@ -22,7 +36,7 @@ Usage:
 \usepackage[
    backend=biber      % if we want unicode 
   ,style=iso-authoryear % or iso-numeric for numeric citation method          
-  ,babel=other        % to support multiple languages in bibliography
+  ,autolang=other     % to support multiple languages in bibliography
   ,sortlocale=cs_CZ   % locale of main language, it is for sorting
   ,bibencoding=UTF8   % this is necessary only if bibliography file is in different encoding than main document
 ]{biblatex}
@@ -37,9 +51,9 @@ Usage:
 ### Bibliographic fields
 Some fields have different meaning than in plain BibTeX.
 
-1. if publication is written in other language than the main document is, it should have filled "hyphenation" field
+1. if publication is written in other language than the main document is, it should have filled "langid" field
 ```
-hyphenation = {czech} 
+langid = {czech}
 ```
 
 2. publications with online versions should have "urldate" field. it is date when you last checked publication online
