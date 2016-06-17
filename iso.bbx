@@ -223,6 +223,20 @@
   \usebibmacro{bytranslator}%
 }
 
+\renewbibmacro*{author}{%
+  \ifboolexpr{
+    test \ifuseauthor
+    and
+    not test {\ifnameundef{author}}
+  }
+    {\printnames{author}%
+     \iffieldundef{fullname}{}{\addspace\printfield{fullname}}%
+     \iffieldundef{authortype}
+       {}
+       {\setunit{\addcomma\space}%
+        \usebibmacro{authorstrg}}}
+    {}}
+
 \renewbibmacro*{editor}{%
   \ifboolexpr{
     test \ifuseeditor
