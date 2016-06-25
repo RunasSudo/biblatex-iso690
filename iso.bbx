@@ -124,8 +124,8 @@
 \DeclareFieldFormat{doi}{%
   \printtext{DOI}\addcolon\space%
   \ifhyperref
-    {\href{http://dx.doi.org/#1}{\nolinkurl{#1}}}
-    {\nolinkurl{#1}}
+    {\url{https://dx.doi.org/#1}}
+    {\nolinkurl{https://dx.doi.org/#1}}
 }
 \DeclareFieldFormat{howpublished}{\mkbibbrackets{#1}}
 \DeclareFieldFormat[online]{howpublished}{%
