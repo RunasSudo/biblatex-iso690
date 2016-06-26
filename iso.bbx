@@ -629,7 +629,7 @@
 \newunit\newblock%
 \usebibmacro{in:}%
 \printnames[first-last]{bookauthor}%
-\printtext{, ed.}
+\iffieldundef{bookauthor}{}{\printtext{, ed.}}
 \newunit\newblock%
 \usebibmacro{host:titles}%
 \setunit{\addspace}%
