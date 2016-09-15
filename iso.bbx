@@ -317,9 +317,9 @@
 
 \newbibmacro*{medium-type}{%
   \iffieldundef{howpublished}
-    {\iffieldundef{urlyear}
-      {}
-      {\printtext{\mkbibbrackets{online}}}}
+    {\ifentrytype{online}
+      {\printtext{\mkbibbrackets{online}}}
+      {}}
     {\printfield{howpublished}}%
 }
 
