@@ -1,8 +1,9 @@
-\ProvidesFile{iso.bbx}[2016/05/13 v0.3.1 biblatex bibliography style]
+\ProvidesFile{iso.bbx}[2017/04/25 v0.3.2 biblatex bibliography style]
 
 \DeclareLanguageMapping{czech}{czech-iso}
 \DeclareLanguageMapping{english}{english-iso}
 \DeclareLanguageMapping{slovak}{slovak-iso}
+\DeclareLanguageMapping{german}{german-iso}
 \NewBibliographyString{at,bysupervisor,urlalso}
 
 %options
@@ -22,24 +23,25 @@
   \settoggle{bbx:shortnum}{#1}%
   \typeout{Short numeration enabled: #1}}
 
-\newtoggle{bbx:thesisinfolast}
-\DeclareBibliographyOption{thesisinfolast}[true]{%
-  \settoggle{bbx:thesisinfolast}{#1}%
+\newtoggle{bbx:thesisinfoinnotes}
+\DeclareBibliographyOption{thesisinfoinnotes}[true]{%
+  \settoggle{bbx:thesisinfoinnotes}{#1}%
   \typeout{Printing thesis info at the end enabled: #1}}
 
 
 \ExecuteBibliographyOptions{%
-  spacecolon=false
-  ,pagetotal=false
-  ,shortnumeration=false
-  ,thesisinfolast=true
-   %sorting=nyt
-  ,maxnames=9
-  ,minnames=1
-	,citetracker=true
-  %,autolang=other
-  ,date=year
-  ,urldate=iso8601
+  spacecolon=false,
+  pagetotal=false,
+  shortnumeration=false,
+  thesisinfoinnotes=true,
+  % sorting=nyt,
+  maxnames=9,
+  minnames=1,
+  citetracker=true,
+  autolang=other,
+  date=year,
+  urldate=edtf,
+  seconds=true,
 }
 
 \newbibmacro*{begentry}{}
@@ -757,7 +759,7 @@
 \newunit\newblock%
 \usebibmacro{identifier}%
 \newunit\newblock%
-\iftoggle{bbx:thesisinfolast}
+\iftoggle{bbx:thesisinfoinnotes}
   {}
   {\printfield{type}
    \newunit\newblock%
@@ -771,7 +773,7 @@
   {\printfield{pagetotal}}
   {}%
 \newunit\newblock%
-\iftoggle{bbx:thesisinfolast}
+\iftoggle{bbx:thesisinfoinnotes}
   {\printfield{type}
    \newunit\newblock%
    \printlist{institution}%

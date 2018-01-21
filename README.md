@@ -1,5 +1,4 @@
-ISO 690 style for biblatex
-==========================
+# Biblatex style for ISO 690 standard
 
 Biblatex is a bibliography and citation tool for LaTeX. This project provides
 support for citations in ISO 690 style. As the standard is a little bit ambiguous
@@ -7,8 +6,7 @@ in some details regarding formatting of records, we largely follow
 requirements of Czech interpretation, as it is required form in many Czech
 universities. The style can be used in other languages as well, of course.
 
-Install
--------
+## Install
 
 Open the terminal and find location of your `TEXMFHOME` directory with this command:
 
@@ -25,10 +23,9 @@ or unzip the file
 
     https://github.com/michal-h21/biblatex-iso690/archive/master.zip
 
-here. You should be able to use biblatex-iso690 now.
+here. You should be able to use **biblatex-iso690** now.
 
-Usage:
-------
+## Usage:
 ```
 \usepackage[english,czech]{babel} % main language of the document must be last
 \usepackage[
@@ -41,10 +38,25 @@ Usage:
 ```
 
 ### Custom options
-* **spacecolon**
-  add space before colon in publisher and title:
-  * **[true]**  Praha : Academia
+
+Above and beyond the scope of package options provided by `biblatex` itself, here are also some more. Default values are in **bold**.
+
+* `spacecolon`
+  add space before colon in publisher and title (and also title and subtitle):
+  *   [true]    Praha : Academia
   * **[false]** Praha: Academia
+* `pagetotal`
+  print out total number of pages as an additional information in the notes section:
+  *   [true]    Praha: Academia, 2008 [60 p.]
+  * **[false]** Praha: Academia, 2008
+* `shortnumeration`
+  visually distinguish numeration and pagination section:
+  *   [true]    ... 2011, **32**(3), 289–301 [visited on 2016-05-14] ...
+  * **[false]** ... 2011, vol. 32, no. 3, pp. 289–301 [visited on 2016-05-14] ...
+* `thesisinfoinnotes`
+  print out thesis information in notes section
+  * **[true]** Available from: <...>. BP. MU, FI, Brno. Supervisor Petr SOJKA
+  *   [false]  BP. MU, FI, Brno. Supervisor Petr SOJKA. Available from: <...>
 
 ### Bibliographic fields
 Some fields have a different meaning than in plain BibTeX.
@@ -67,8 +79,26 @@ location = {Praha},
 publisher = {Academia}
 ```
 
-For more details see the file `mybib.bib`.
+For more details see the file [mybib.bib](https://github.com/michal-h21/biblatex-iso690/blob/master/mybib.bib).
 
-License
--------
-GNU/GPL 3
+## License
+
+Copyright (C) 2011--2017 Michal Hoftich
+              2015--2017 Moritz Wemheuer
+              2016--2017 Dávid Lupták
+
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either version 1.3
+of this license or (at your option) any later version.
+The latest version of this license is in
+
+  http://www.latex-project.org/lppl.txt
+
+and version 1.3 or later is part of all distributions of LaTeX
+version 2005/12/01 or later.
+
+This work has the LPPL maintenance status `maintained`.
+
+The Current Maintainer of this work is Michal Hoftich.
+
+This work consists of all files listed in [manifest.txt](./manifest.txt).
