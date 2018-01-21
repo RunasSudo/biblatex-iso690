@@ -51,7 +51,6 @@
 \newcommand\mainlstring[1]{\biblstring[\mainlang]{#1}}
 
 \renewcommand*\subtitlepunct{\addspacecolon\addspace}
-\renewcommand\multinamedelim{\addcomma\addspace}
 \renewcommand\finalnamedelim{\printtext{ and }}
 
 \newcommand\addspacecolon{%
@@ -124,8 +123,8 @@
 \DeclareFieldFormat{doi}{%
   \printtext{DOI}\addcolon\space%
   \ifhyperref
-    {\url{https://dx.doi.org/#1}}
-    {\nolinkurl{https://dx.doi.org/#1}}
+    {\href{http://dx.doi.org/#1}{\nolinkurl{#1}}}
+    {\nolinkurl{#1}}
 }
 \DeclareFieldFormat{howpublished}{\mkbibbrackets{#1}}
 \DeclareFieldFormat[online]{howpublished}{%
@@ -145,16 +144,15 @@
 
 % ==================== RUNASSUDO ADDITIONS ====================
 \NewBibliographyString{urlupdated}
-\DeclareDatamodelFields[type=field,datatype=literal]{updated}
+\DeclareDatamodelFields[type=field,datatype=verbatim]{updated}
 \DeclareDatamodelEntryfields{updated}
 \DeclareFieldFormat*{updated}{\mainsstring{urlupdated}\addspace#1}
 
-\DeclareDatamodelFields[type=field,datatype=literal]{fullname}
+\DeclareDatamodelFields[type=field,datatype=verbatim]{fullname}
 \DeclareDatamodelEntryfields{fullname}
-\DeclareFieldFormat*{fullname}{[#1]}
+\DeclareFieldFormat*{fullname}{[\MakeUppercase{#1}]}
 
 \DeclareDatamodelFields[type=field,datatype=verbatim]{isbn} %ISBN (but not ISSN) is treated as a number for some reason
-\DeclareNameAlias{bytranslator}{given-family}
 % ======================= END ADDITIONS =======================
 
 %We must handle more than one isbn and issn
@@ -199,7 +197,7 @@
 
 %name alias
 
-\DeclareNameAlias{default}{last-first}
+\DeclareNameAlias{default}{sortname}
 \DeclareNameAlias{supervisor}{first-last}
 
 %bibliography macros
@@ -244,9 +242,9 @@
     and
     not test {\ifnameundef{editor}}
   }
-    {\printnames[first-last]{editor}%
-     \addcomma\addspace%
-     \usebibmacro{editorstrg}%
+    {\printnames{editor}%
+     \addspace%
+     \mkbibparens{\usebibmacro{editorstrg}}%
      \clearname{editor}}%
     {}}
 
@@ -317,9 +315,9 @@
 
 \newbibmacro*{medium-type}{%
   \iffieldundef{howpublished}
-    {\ifentrytype{online}
-      {\printtext{\mkbibbrackets{online}}}
-      {}}
+    {\iffieldundef{urlyear}
+      {}
+      {\printtext{\mkbibbrackets{online}}}}
     {\printfield{howpublished}}%
 }
 
@@ -630,7 +628,7 @@
 \newunit\newblock%
 \usebibmacro{in:}%
 \printnames[first-last]{bookauthor}%
-\iffieldundef{bookauthor}{}{\addcomma\addspace\usebibmacro{editorstrg}}
+\printtext{, ed.}
 \newunit\newblock%
 \usebibmacro{host:titles}%
 \setunit{\addspace}%
@@ -736,7 +734,6 @@
 \iftoggle{bbx:totalpages}
   {\printfield{pagetotal}}
   {}%
-\newunit\newblock%
 \printfield{note}%
 \newunit\newblock%
 \setunit{\bibpagerefpunct}\newblock%
